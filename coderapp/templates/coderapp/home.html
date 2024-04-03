@@ -1,470 +1,759 @@
-<!doctype html>
-{% load static %}
-<html lang="en">
-  <head>
-    <title>JobHub</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="Free-Template.co" />
-    <link rel="shortcut icon" href="ftco-32x32.png">
-    
-    <link rel="stylesheet" href="{% static 'css/custom-bs.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'fonts/line-icons/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+<!DOCTYPE html>
+{%load static%}
+<html lang="en-US" dir="ltr">
 
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{%static 'css/style.css' %}">    
-  </head>
-  <body id="top">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="{%static 'assets/img/favicons/apple-touch-icon.png'%}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png'%}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png'%}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico'%}">
+  <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json'%}">
+  <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png'%}">
+  <meta name="theme-color" content="#ffffff">
+  <title>Geekshub</title>
+  <style>
+    .button1{
+      background-color: greenyellow;
+      padding: 10px;
+      padding-left: 30px;
+      padding-right: 30px;
+      margin-left: 60px;
+      margin-right: 50px;
+      border-radius: 10px;
+      color: rgb(1, 32, 127);
+      font-weight: 500;
 
-  <!-- <div id="overlayer"></div>
-  <div class="loader">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div> -->
-    
+    }
+    .button2{
+      background-color: skyblue;
+      padding: 10px;
+      padding-left: 30px;
+      padding-right: 30px;
+      margin-left: 250px;
+      margin-top: -45px;
+      margin-right: 70px;
+      border-radius: 10px;
+      color: rgb(1, 32, 127);
+      font-weight: 500;
 
-<div class="site-wrap">
+    }
+  </style>
 
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link href="{% static 'assets/css/theme.css'%}" rel="stylesheet" />
+
+</head>
+
+
+<body>
+
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+  <main class="main" id="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 backdrop"
+      data-navbar-on-scroll="data-navbar-on-scroll">
+      <div class="container"><a class="navbar-brand d-flex align-items-center fw-bolder fs-2 fst-italic" href="#">
+          <div class="text-info">GEEKS</div>
+          <div class="text-warning">HUB</div>
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+            <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#">Home</a></li>
+            <li class="nav-item px-2"><a class="nav-link fw-medium" href="#skills">Skills</a></li>
+            <li class="nav-item px-2"><a class="nav-link fw-medium" href="#feedbacks">Feedbacks</a></li>
+          </ul>
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
-    
-
-    <!-- NAVBAR -->
-    <header class="site-navbar mt-3">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="site-logo col-6"><a href="">JobHub</a></div>
-
-          <nav class="mx-auto site-navigation">
-            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="" class="nav-link active">Home</a></li>
-              <li><a href="">About</a></li>
-              <li><a href="">Blog</a></li>
-              <li><a href="">Contact</a></li>
-              <li class="d-lg-none"><a href=""><span class="mr-2">+</span> Post a Job</a></li>
-              <li class="d-lg-none"><a href="">Log In</a></li>
-            </ul>
-          </nav>
-          
-          <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-            <div class="ml-auto">
-              <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
-              <!-- <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a> -->
-            </div>
-            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-          </div>
-
-        </div>
+    </nav>
+    <section class="py-0" id="home">
+      <div class="bg-holder d-none d-sm-block"
+        style="background-image:url({% static 'assets/img/illustrations/hero-bg.png'%});background-position:right top;background-size:contain;">
       </div>
-    </header>
+      <!--/.bg-holder-->
 
-<!-- HOME -->
-<section class="home-section section-hero overlay bg-image" style="background-image: url('{{ static " images/hero_1.jpg"
-  }}');" id="home-section">
-
-  <div class="container">
-    <div class="row align-items-center justify-content-center">
-      <div class="col-md-12">
-        <div class="mb-5 text-center">
-          <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Job Done</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-          <div>
-            <h4 class="text-white font-weight-bold">Looking For A Job? <a href="{%url 'signup'%}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Sign up</a></h4>
-            
-          </div>
-        </div>
+      <div class="bg-holder d-sm-none"
+        style="background-image:url({% static 'assets/img/illustrations/hero-bg.png'%});background-position:right top;background-size:contain;">
       </div>
-    </div>
-  </div>
+      <!--/.bg-holder-->
 
-  <a href="#next" class="scroll-button smoothscroll">
-    <span class=" icon-keyboard_arrow_down"></span>
-  </a>
+      <div class="container">
+        <div class="row align-items-center min-vh-75 min-vh-md-100">
+          <div class="col-md-7 col-lg-6 py-6 text-sm-start text-center">
+            <h1 class="mt-6 mb-sm-4 display-2 fw-semi-bold lh-sm fs-4 fs-lg-6 fs-xxl-8">Find your works better <br
+                class="d-block d-lg-none d-xl-block" />and faster</h1>
+            <p class="mb-4 fs-1">Find your best job better and faster with Jobest</p>
+            <div class="pt-3">
 
-</section>
+                <div class=" w-xl-85 w-xxl-70 d-flex flex-end-start">
+                  <a href="#" class="button1">Find a job</a>
+                </div>
+                <div class="w-xl-85 w-xxl-70 d-flex flex-end-start">
+                  <a href="#" class="button2">+ post a job</a>
+                </div>               
 
-
-
-  <div class="container">
-    <div class="row mb-5 justify-content-center">
-      <div class="col-md-7 text-center">
-        <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-        <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
-      </div>
-    </div>
-    <div class="row pb-0 block__19738 section-counter">
-
-      <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-        <div class="d-flex align-items-center justify-content-center mb-2">
-          <strong class="number" data-number="1930">0</strong>
-        </div>
-        <span class="caption">Candidates</span>
-      </div>
-
-      <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-        <div class="d-flex align-items-center justify-content-center mb-2">
-          <strong class="number" data-number="54">0</strong>
-        </div>
-        <span class="caption">Jobs Posted</span>
-      </div>
-
-      <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-        <div class="d-flex align-items-center justify-content-center mb-2">
-          <strong class="number" data-number="120">0</strong>
-        </div>
-        <span class="caption">Jobs Filled</span>
-      </div>
-
-      <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-        <div class="d-flex align-items-center justify-content-center mb-2">
-          <strong class="number" data-number="550">0</strong>
-        </div>
-        <span class="caption">Companies</span>
-      </div>
-
-        
-    </div>
-  </div>
-</section>
-
-<section class="site-section">
-  <div class="container">
-
-    <div class="row mb-5 justify-content-center">
-      <div class="col-md-7 text-center">
-        <h2 class="section-title mb-2">43,167 Job Listed</h2>
-      </div>
-    </div>
-    
-    <ul class="job-listings mb-5">
-      <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-        <a href="{% static 'job-single.html' %}"></a>
-        <div class="job-listing-logo">
-          <img src="{% static 'images/job_logo_1.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-        </div>
-
-        <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-          <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-            <h2>Product Designer</h2>
-            <strong>Adidas</strong>
-          </div>
-          <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-            <span class="icon-room"></span> New York, New York
-          </div>
-          <div class="job-listing-meta">
-            <span class="badge badge-danger">Part Time</span>
-          </div>
-        </div>
-        
-      </li>
-      <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-        <a href="{% static 'job-single.html' %}"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_2.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="{% static 'job-single.html' %}"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_3.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Back-end Engineer (Python)</h2>
-                <strong>Amazon</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="{% static 'job-single.html' %}"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_4.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Senior Art Director</h2>
-                <strong>Microsoft</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Anywhere 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="{% static 'job-single.html' %}"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_5.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Puma</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> San Mateo, CA 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="{% static 'job-single.html' %}"></a>
-            <div class="job-listing-logo">
-              <img src="{% static 'images/job_logo_1.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Product Designer</h2>
-                <strong>Adidas</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> New York, New York
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-danger">Part Time</span>
-              </div>
-            </div>
-            
-          </li>
-          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="job-single.html"></a>
-            <div class="job-listing-logo">
-              <img src="{%static 'images/job_logo_2.jpg'%}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                <h2>Digital Marketing Director</h2>
-                <strong>Sprint</strong>
-              </div>
-              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                <span class="icon-room"></span> Overland Park, Kansas 
-              </div>
-              <div class="job-listing-meta">
-                <span class="badge badge-success">Full Time</span>
-              </div>
-            </div>
-          </li>
-
-          
-
-          
-        </ul>
-
-        <div class="row pagination-wrap">
-          <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
-            <span>Showing 1-7 Of 43,167 Jobs</span>
-          </div>
-          <div class="col-md-6 text-center text-md-right">
-            <div class="custom-pagination ml-auto">
-              <a href="#" class="prev">Prev</a>
-              <div class="d-inline-block">
-              <a href="#" class="active">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              </div>
-              <a href="#" class="next">Next</a>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="py-5">
+      <div class="bg-holder"
+        style="background-image:url({% static 'assets/img/illustrations/bg.png'%});background-position:left top;background-size:initial;margin-top:-180px;">
+      </div>
+      <!--/.bg-holder-->
 
+      <div class="container">
+        <div class="row flex-center">
+          <div class="col-md-5 order-md-0 text-center text-md-start"><img class="img-fluid mb-4"
+              src="{% static 'assets/img/illustrations/passion.png'%}" width="450" alt="" /></div>
+          <div class="col-md-5 text-center text-md-start">
+            <h6 class="fw-bold fs-2 fs-lg-3 display-3 lh-sm">Find your passion and<br />achieve success</h6>
+            <p class="my-4 pe-xl-8"> find a works that suits your interests and talents. A high salary is not the top
+              priority. Most importantly,You can work according to your heart's desire.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg')"> -->
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-0">
+
+      <div class="container">
+
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section class="py-8">
+
+          <div class="container">
+            <div class="row flex-center">
+              <div class="col-md-5 order-md-1 text-center text-md-end"><img class="img-fluid mb-4"
+                  src="{% static 'assets/img/illustrations/jobs.png'%}" width="450" alt="" /></div>
+              <div class="col-md-5 text-center text-md-start">
+                <h6 class="fw-bold fs-2 fs-lg-3 display-3 lh-sm">Million of works, finds <br> the one thats rights for
+                  you</h6>
+                <p class="my-4 pe-xl-8">Get your blood tests delivered at home collect a sample from the news your blood
+                  tests.</p>
+              </div>
+            </div>
+          </div>
+          <!-- end of .container-->
+
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
+
+
+      </div>
+      <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+    <section class="py-5" id="skills">
+      <div class="bg-holder d-none d-sm-block"
+        style="background-image:url(assets/img/illustrations/category-bg.png);background-position:right top;background-size:200px 320px;">
+      </div>
+      <!--/.bg-holder-->
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-9 col-lg-6 text-center mb-3">
+            <h5 class="fw-bold fs-3 fs-lg-5 lh-sm mb-3">Browse works by Skills</h5>
+            <p class="mb-5">Choose from the list of most popular categories</p>
+          </div>
+        </div>
+        <div class="row flex-center h-100">
+          <div class="col-10 col-xl-9">
+            <div class="row">
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">Python</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">React</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">Flutter</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">Java</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">C++</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-4 pb-lg-6 px-lg-4 pb-4">
+                <div class="card py-4 shadow-sm h-100 hover-top">
+                  <div class="text-center"> <img src="{% static 'assets/img/illustrations/programmer.png'%}"
+                      height="120" alt="" />
+                    <div class="card-body px-2">
+                      <h6 class="fw-bold fs-1 heading-color">Javascript</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================-->
+    <!-- <section> begin ============================-->
+    <section class="py-8">
+
+      <div class="container">
+        <div class="row flex-center">
+          <div class="col-md-5 order-md-1 text-center text-md-end"><img class="img-fluid mb-4"
+              src="{% static 'assets/img/illustrations/feature.png'%}" width="450" alt="" /></div>
+          <div class="col-md-5 text-center text-md-start">
+            <h6 class="fw-bold fs-2 fs-lg-3 display-3 lh-sm">Over 10,000 top <br> companies join with us</h6>
+            <p class="my-4 pe-xl-8">Posting now includes out of the box integration with major CRM &amp;amp; accounting
+              and ERP platforms, as well as an open API that allows you to seamlessly integrate with your business
+              systems.</p>
+          </div>
+        </div>
+      </div>
+      <!-- end of .container-->
+
+    </section>
+    <!-- <section> close ============================-->
+    <!-- ============================================-->
+
+
+    <section class="py-0"><img class="w-100" src="{% static 'assets/img/illustrations/come-on-join.png'%}" alt="" />
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-8">
-            <h2 class="text-white">Looking For A Job?</h2>
-            <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
-          </div>
-          <div class="col-md-3 ml-auto">
-            <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+          <div class="col-12 text-center">
+            <h6 class="fw-bold fs-3 fs-lg-5 lh-sm">Come on, join with us !</h6>
+            <p>Create an account and refer your friend </p>
           </div>
         </div>
       </div>
     </section>
-
-    
-    <section class="site-section py-4">
-      <div class="container">
-    
-        <div class="row align-items-center">
-          <div class="col-12 text-center mt-4 mb-5">
-            <div class="row justify-content-center">
-              <div class="col-md-7">
-                <h2 class="section-title mb-2">Company We've Helped</h2>
-                <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p>
+    <section class="py-8" id="feedbacks">
+      <div class="container-lg">
+        <div class="row flex-center">
+          <div class="col-md-11 col-lg-6 col-xl-4 col-xxl-5">
+            <h6 class="fs-3 fs-lg-4 lh-sm">Feedbacks</h6>
+          </div>
+          <div class="col-lg-4 position-relative mt-n5 mt-md-n4"><a
+              class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleDark" role="button"
+              data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span
+                class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2"
+              href="#carouselExampleDark" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"
+                aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>
+        </div>
+        <div class="row flex-center">
+          <div class="col-xl-10 px-0">
+            <div class="carousel slide pt-6" id="carouselExampleDark" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                  <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/jam.jpg'%}" alt="" style="width: 100px; border-radius:150px;">
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/sid.jpg'%}" alt="" style="width: 80px; height:135px; border-radius:150px;">
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/user-3.png'%}" alt="" />
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <div class="row h-100 m-lg-7 mx-3 mt-6 mx-md-4 my-md-7">
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/user-1.png'%}" alt="" />
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/user-2.png'%}" alt="" />
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-8 mb-md-0">
+                      <div class="card card-span h-100 shadow-lg">
+                        <div class="card-span-img"><img src="{% static 'assets/img/gallery/user-3.png'%}" alt="" />
+                        </div>
+                        <div class="card-body d-flex flex-column flex-center py-6">
+                          <div class="my-4">
+                            <ul class="list-unstyled list-inline">
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                              <li class="list-inline-item me-0">
+                                <svg class="bi bi-star-fill" xmlns="http://www.w3.org/2000/svg" width="28" height="26"
+                                  fill="#FF974D" viewBox="0 0 16 16">
+                                  <path
+                                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                  </path>
+                                </svg>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="card-text text-center text-1000 px-4">I love Jobest, easy platform to use,fantasic
+                            staff and nothing but great results!</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_mailchimp.svg' %}" alt="Image" class="img-fluid logo-1">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_paypal.svg' %}" alt="Image" class="img-fluid logo-2">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_stripe.svg' %}" alt="Image" class="img-fluid logo-3">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_visa.svg' %}" alt="Image" class="img-fluid logo-4">
-          </div>
-    
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_apple.svg' %}" alt="Image" class="img-fluid logo-5">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_tinder.svg' %}" alt="Image" class="img-fluid logo-6">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_sony.svg' %}" alt="Image" class="img-fluid logo-7">
-          </div>
-          <div class="col-6 col-lg-3 col-md-6 text-center">
-            <img src="{% static 'images/logo_airbnb.svg' %}" alt="Image" class="img-fluid logo-8">
           </div>
         </div>
       </div>
     </section>
-    
+    <section class="py-0 bg-primary-gradient">
+      <div class="bg-holder"
+        style="background-image:url({%static 'assets/img/illustrations/footer-bg.png'%});background-position:center;background-size:cover;">
+      </div>
+      <!--/.bg-holder-->
 
-    <!-- <section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');"> -->
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 align-self-center text-center text-md-left mb-5 mb-md-0">
-            <h2 class="text-white">Get The Mobile Apps</h2>
-            <p class="mb-5 lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
-            <p class="mb-0">
-              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-apple mr-3"></span>App Store</a>
-              <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-android mr-3"></span>Play Store</a>
-            </p>
+        <div class="row flex-center py-8">
+          <div class="col-lg-6 mb-4 text-center">
+            <h1 class="text-white">Get started now</h1>
+          </div>
+          <div class="col-lg-6 d-flex justify-content-lg-end justify-content-center">
+            <form class="row row-cols-lg-auto g-0 align-items-center">
+              <div class="col-9 col-lg-8">
+                <label class="visually-hidden" for="colFormLabel">Username</label>
+                <div class="input-group">
+                  <input class="rounded-end-0 form-control" id="colFormLabel" type="email"
+                    placeholder="email address" />
+                </div>
+              </div>
+              <div class="col-3 col-lg-4">
+                <button class="btn btn-primary rounded-start-0" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row justify-content-lg-between">
+          <div class="col-6 col-sm-4 col-lg-auto mb-3">
+            <h5 class="mb-5 text-white">CATEGORIES </h5>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">IOS Developers</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Front-End Developers</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">UX Designers</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">UI Designers</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Content Writer</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Program &amp; Tech</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-sm-4 col-lg-auto mb-3">
+            <h5 class="mb-5 text-white">COMMUNITY </h5>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Events</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Blog</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Forum</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Podcast</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Affiliates</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Invite a Friend</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-sm-4 col-lg-auto mb-3">
+            <h5 class="mb-5 text-white">ABOUT </h5>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">About Us</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Partnerships</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Finance Experts</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Project Management</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Product Manager</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">The Team</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-sm-4 col-lg-auto mb-3">
+            <h5 class="mb-5 text-white">CONTACT </h5>
+            <ul class="list-unstyled mb-md-4 mb-lg-0">
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Contact Us</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Press Center</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">Careers</a></li>
+              <li class="mb-3"><a class="text-light text-decoration-none" href="#!">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row flex-center">
+          <div class="col-auto my-4">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item me-3"><a href="#!">
+                  <svg class="bi bi-twitter" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#1F3A63"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
+                    </path>
+                  </svg></a></li>
+              <li class="list-inline-item me-3"><a class="text-decoration-none" href="#!">
+                  <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#1F3A63"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z">
+                    </path>
+                  </svg></a></li>
+              <li class="list-inline-item me-3"><a href="#!">
+                  <svg class="bi bi-instagram" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#1F3A63"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+                    </path>
+                  </svg></a></li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
-    
-    <footer class="site-footer">
+  </main>
+  <!-- ===============================================-->
+  <!--    End of Main Content-->
+  <!-- ===============================================-->
 
-      <a href="#top" class="smoothscroll scroll-top">
-        <span class="icon-keyboard_arrow_up"></span>
-      </a>
 
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-6 col-md-3 mb-4 mb-md-0">
-            <h3>Search Trending</h3>
-            <ul class="list-unstyled">
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Graphic Design</a></li>
-              <li><a href="#">Web Developers</a></li>
-              <li><a href="#">Python</a></li>
-              <li><a href="#">HTML5</a></li>
-              <li><a href="#">CSS3</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md-3 mb-4 mb-md-0">
-            <h3>Company</h3>
-            <ul class="list-unstyled">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Career</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Resources</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md-3 mb-4 mb-md-0">
-            <h3>Support</h3>
-            <ul class="list-unstyled">
-              <li><a href="#">Support</a></li>
-              <li><a href="#">Privacy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md-3 mb-4 mb-md-0">
-            <h3>Contact Us</h3>
-            <div class="footer-social">
-              <a href="#"><span class="icon-facebook"></span></a>
-              <a href="#"><span class="icon-twitter"></span></a>
-              <a href="#"><span class="icon-instagram"></span></a>
-              <a href="#"><span class="icon-linkedin"></span></a>
-            </div>
-          </div>
-        </div>
 
-        <div class="row text-center">
-          <div class="col-12">
-            <p class="copyright"><small>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  
-  </div>
 
-    <!-- SCRIPTS -->
-    <script src="{% static 'js/jquery.min.js'%}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
-    <script src="{% static 'js/isotope.pkgd.min.js'%}"></script>
-    <script src="{% static 'js/stickyfill.min.js'%}"></script>
-    <script src="{% static 'js/jquery.fancybox.min.js'%}"></script>
-    <script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+  <script src="{% static 'vendors/@popperjs/popper.min.js'%}"></script>
+  <script src="{% static 'vendors/bootstrap/bootstrap.min.js'%}"></script>
+  <script src="{% static 'vendors/is/is.min.js'%}"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="{% static 'assets/js/theme.js'%}"></script>
 
-    <script src="{% static 'js/jquery.waypoints.min.js'%}"></script>
-    <script src="{% static 'js/jquery.animateNumber.min.js'%}"></script>
-    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400&amp;display=swap"
+    rel="stylesheet">
+</body>
 
-    <script src="{% static 'js/bootstrap-select.min.js'%}"></script>
-
-    <script src="{% static 'js/custom.js'%}"></script>
-
-     
-  </body>
 </html>

@@ -9,3 +9,5 @@ from django.contrib import messages
 
 
     
+class HomeView(TemplateView):
+    template_name = "coderapp/home.html"
