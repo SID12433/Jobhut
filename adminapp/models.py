@@ -9,15 +9,57 @@ class User(AbstractUser):
         ("buyer", "Buyer"),
     ]
     role = models.CharField(max_length=200, choices=ROLE_CHOICES, default="coder")
-
-
-
-class AdminProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="admin_profile")
-    address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
-    dob = models.DateField(null=True)
-    profile_pic = models.ImageField(upload_to="images/profile",default='images/default.jpg', blank=True, null=True)
+    
+    
+class Buyer(User):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    address = models.CharField(max_length=100)
+    companyname=models.CharField(max_length=100)
+    country=models.CharField(max_length=100)
+    
+    
+class Coder(User):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    address = models.CharField(max_length=100)
+    designation=models.CharField(max_length=100)
+    gender=models.CharField(max_length=100)
+    skills=models.CharField(max_length=100)
+    proof = models.FileField(null=True, upload_to="images")
+    profile = models.ImageField(upload_to="images", null=True)
+    status= models.BooleanField(default=True)
 
     def __str__(self):
-        return self.user.username
+        return self.name
+    
+class Project(models.Model):
+    buyer=models.ForeignKey(Buyer,on_delete=models.CASCADE)
+    title=models.CharField(max_length=100)
+    description=models.CharField(max_length=100)
+    skills_required=models.CharField(max_length=100)
+    budget=models.PositiveIntegerField()
+    category=models.CharField(max_length=100)
+    tags=models.CharField(max_length=100)
+    deadline=models.CharField(max_length=100)
+    status= models.BooleanField(default=True)
+
+
+class Bid(models.Model):
+    coder=models.ForeignKey(Coder,on_delete=models.CASCADE)
+    project=models.ForeignKey(Project,on_delete=models.CASCADE)
+    bid_amount=models.PositiveIntegerField()
+    bid_date=models.DateTimeField(auto_now_add=True)
+    status=models.BooleanField(default=False)
+    
+    
+class Payment(models.Model):
+    buyer=models.ForeignKey(Buyer,on_delete=models.CASCADE)
+    coder=models.ForeignKey(Coder,on_delete=models.CASCADE)
+    project=models.ForeignKey(Project,on_delete=models.CASCADE)
+    amount=models.PositiveIntegerField()
+    payment_date=models.DateTimeField(auto_now_add=True)
+    status=models.BooleanField(default=True)
+    
