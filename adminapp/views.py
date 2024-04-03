@@ -6,7 +6,12 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
-# Create your views here.
+from django.utils.decorators import method_decorator
+
+from django.db.models import Count
+from datetime import date
+from django.db.models import Sum
+
 
 
 
@@ -52,6 +57,47 @@ class SignInView(View):
         messages.error(request, "Failed to login")
         return render(request, self.template_name)
     
-    
+
+@method_decorator(decs,name="dispatch")    
 class HomeView(TemplateView):
     template_name = "adminapp/home.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['works'] = Project.objects.aggregate(count=Count('id'))['count']
+        context['sale'] = Payment.objects.aggregate(count=Count('id'))['count']
+        context['freelancers'] = Coder.objects.all().count()
+        context['buyers'] = Buyer.objects.all().count()
+        return context 
+    
+    
+@method_decorator(decs,name="dispatch") 
+class CoderView(ListView):
+    template_name="adminapp/freelancers.html"
+    model=Coder
+    context_object_name="coders"
+    
+@method_decorator(decs,name="dispatch") 
+class BuyerView(ListView):
+    template_name="adminapp/buyers.html"
+    model=Buyer
+    context_object_name="buyers"
+    
+    
+@method_decorator(decs,name="dispatch") 
+class ProjectsView(ListView):
+    template_name="adminapp/projects.html"
+    model=Project
+    context_object_name="projects" 
+    
+    
+@method_decorator(decs,name="dispatch") 
+class PaymentsView(ListView):
+    template_name="adminapp/payments.html"
+    model=Payment
+    context_object_name="payments"
+    
+    
+def signoutview(request,*args,**kwargs):
+    logout(request)
+    return redirect("adminsignin")
