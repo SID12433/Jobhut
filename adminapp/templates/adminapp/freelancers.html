@@ -71,11 +71,11 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID proof</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">skills</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status</th>
 
                     <th class="text-secondary opacity-7"></th>
@@ -86,7 +86,7 @@
                     {%for f in freelancers%}
                         <tr>
                             <td>
-                                <div class="d-flex px-2 py-1">
+                                <div class="d-flex px-2 py-1 ps-4">
                                     <div>
                                     <img src="{{f.profile.url}}" class="avatar avatar-lg me-3 border-radius-lg">
                                     </div>
@@ -105,13 +105,10 @@
                                 <span class="text-secondary text-xs font-weight-bold">{{f.address}}</span>
                             </td>
                             <td class="align-middle text-center">
-                                <span class="text-secondary text-xs font-weight-bold">{{f.designation}}</span>
+                              <span class="text-secondary text-xs font-weight-bold">{{f.skills}}</span>
                             </td>
                             <td class="align-middle text-center">
-                                <span class="text-secondary text-xs font-weight-bold">{{f.gender}}</span>
-                            </td>
-                            <td class="align-middle text-center">
-                                <span class="text-secondary text-xs font-weight-bold">{{f.skills}}</span>
+                                <span class="text-secondary text-xs font-weight-bold">{{f.status}}</span>
                             </td>
                         </tr>
                     {%endfor%}

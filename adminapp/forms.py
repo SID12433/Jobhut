@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User,Skills
 
 
 class RegistrationForm(forms.ModelForm):
@@ -57,3 +57,10 @@ class AdminRegistrationForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+    
+    
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model=Skills
+        fields=["no","skill"]
+    

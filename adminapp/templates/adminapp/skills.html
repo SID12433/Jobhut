@@ -1,0 +1,90 @@
+{%extends 'adminapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-7">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-1">
+              <h6 class="text-white text-capitalize ps-3">Skills</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SL NO</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">skill</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- row started -->
+                    {%for s in skills%}
+                        <tr>
+                            <td>
+                            <p class="text-xs font-weight-bold mb-0 ms-3">{{s.no}}</p>
+                            </td>
+                            </td>
+                            <td>
+                            <p class="text-xs font-weight-bold mb-0">{{s.skill}}</p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0 ms-5">{{s.status}}</p>
+                            </td>
+                            <td>
+                                <a class="btn btn-info ms-5" href="{%url 'remove_skill' s.id%}">Disable</a>
+                                <a class="btn btn-success ms-2" href="{%url 'readd_skill' s.id%}">Enable</a>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                  <!-- row ending -->
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 mt-5">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-1">
+              <h6 class="text-white text-capitalize ps-3">Add skill</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+                <form action="" method="post">   
+                    {%csrf_token%}  
+                    <label for="no" class="ms-5">sl no</label> <br>              
+                    <input type="text" class="input" name="no" required> <br>
+                    <label for="skill" class="ms-5">Skill</label> <br>
+                    <input type="text" class="input" name="skill" required>
+                    <button class="btn btn-info mt-2 ms-5 px-5" type="submit">ADD</button>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .input{
+        margin-left: 35px;
+        padding-right: 100px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        padding: 5px 30px;
+        font-size: medium;
+        font-weight: 5px;
+        border: 1px solid;
+    }
+  </style>
+
+{%endblock%}
+

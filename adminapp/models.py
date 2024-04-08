@@ -20,6 +20,12 @@ class Buyer(User):
     country=models.CharField(max_length=100)
     
     
+class Skills(models.Model):
+    no=models.PositiveIntegerField()
+    skill=models.CharField(max_length=100)
+    status=models.BooleanField(default=True)
+    
+    
 class Coder(User):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
@@ -53,6 +59,19 @@ class Bid(models.Model):
     bid_amount=models.PositiveIntegerField()
     bid_date=models.DateTimeField(auto_now_add=True)
     status=models.BooleanField(default=False)
+    CHOICES = [
+        ("Pending","Pending"),
+        ("On progress", "On progress"),
+        ("Completed", "Completed"),
+    ]
+    progress=models.CharField(max_length=100,choices=CHOICES,default="Pending")
+    
+    
+class BidDetails(models.Model):
+    coder=models.ForeignKey(Coder,on_delete=models.CASCADE)
+    doc=models.FileField(upload_to="files")
+    bid=models.ForeignKey(Bid,on_delete=models.CASCADE)
+
     
     
 class Payment(models.Model):
@@ -62,4 +81,9 @@ class Payment(models.Model):
     amount=models.PositiveIntegerField()
     payment_date=models.DateTimeField(auto_now_add=True)
     status=models.BooleanField(default=True)
+
     
+class Collaborate(models.Model):
+    note = models.CharField(max_length=100,)
+    file= models.FileField(upload_to="files",null=True)
+    coder = models.ForeignKey(Coder, on_delete=models.CASCADE)

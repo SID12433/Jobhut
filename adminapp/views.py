@@ -52,7 +52,7 @@ class SignInView(View):
             if usr is not None:
                 login(request, usr)
                 messages.success(request, "Login success")
-                return redirect("home")
+                return redirect("adminhome")
         
         messages.error(request, "Failed to login")
         return render(request, self.template_name)
@@ -75,7 +75,7 @@ class HomeView(TemplateView):
 class CoderView(ListView):
     template_name="adminapp/freelancers.html"
     model=Coder
-    context_object_name="coders"
+    context_object_name="freelancers"
     
 @method_decorator(decs,name="dispatch") 
 class BuyerView(ListView):
@@ -83,6 +83,38 @@ class BuyerView(ListView):
     model=Buyer
     context_object_name="buyers"
     
+    
+@method_decorator(decs,name="dispatch") 
+class SkillsView(CreateView,ListView):
+    template_name="adminapp/skills.html"
+    model=Skills
+    form_class=SkillForm
+    context_object_name="skills"
+    success_url=reverse_lazy("skills")
+
+    def form_valid(self, form):
+        messages.success(self.request,"skills added successfully")
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request,"skills adding failed")
+        return super().form_invalid(form)
+    
+
+   
+def deactivate_skill(request,*args,**kwargs):
+    id=kwargs.get("pk")
+    Skills.objects.filter(id=id).update(status=False)
+    messages.success(request,"skill is now inactive")
+    return redirect("skills") 
+
+def activate_skill(request,*args,**kwargs):
+    id=kwargs.get("pk")
+    Skills.objects.filter(id=id).update(status=True)
+    messages.success(request,"skill is now active")
+    return redirect("skills")
+    
+
     
 @method_decorator(decs,name="dispatch") 
 class ProjectsView(ListView):

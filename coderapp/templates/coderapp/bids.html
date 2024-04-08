@@ -1,0 +1,69 @@
+{%extends 'coderapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-7 mb-4 mt-5">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Accepted Bids</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2 ">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sid</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Title</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Duration</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- row started -->
+                    {%for c in collaborators%}
+                        <tr>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0">{{c.id}}</p>
+                            </td>
+                           
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{c.Bid.project.title}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{c.Bid.project.description}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{c.bid_amount}}</span>
+                            </td>   
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{c.Bid.project.deadline}}</span>
+                            </td>
+                          
+                          <td>
+                            <a href="{%url 'project-remove' c.id%}" class="buttons"><i class="fa-solid fa-trash" style="color: #e34635;"></i></a>
+                          </td>
+                            
+                        </tr>
+                    {%endfor%}
+                  <!-- row ending -->
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{%endblock%}

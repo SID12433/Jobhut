@@ -1,0 +1,64 @@
+{%extends 'buyerapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+<div class="container-fluid py-4">
+    <div class="row" style="margin-left: 90px;">
+      <div class="col-10">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-1">
+              <h6 class="text-white text-capitalize ps-3">Project</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">coder</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project title</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project doc</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- row started -->
+                    {%for p in projects%}
+                        <tr>
+                            <td>
+                            <p class="text-xs font-weight-bold mb-0 ms-3">{{p.coder.name}}</p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0 ms-3">{{p.project.title}}</p>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0 ms-3">{{p.doc}}</p>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                  <!-- row ending -->
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .input{
+        margin-left: 35px;
+        padding-right: 100px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        padding: 5px 30px;
+        font-size: medium;
+        font-weight: 5px;
+        border: 1px solid;
+    }
+  </style>
+
+{%endblock%}
+

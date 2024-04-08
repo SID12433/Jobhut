@@ -71,13 +71,12 @@
               <table class="table align-items-center mb-0">
                 <thead>
                   <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-5">Name</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID proof</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status</th>
-
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company name</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Country</th>
                     <th class="text-secondary opacity-7"></th>
                   </tr>
                 </thead>
@@ -86,11 +85,7 @@
                     {%for b in buyers%}
                         <tr>
                             <td>
-                                <div class="d-flex px-2 py-1">
-                                    <div class="d-flex flex-column justify-content-center">
-                                    <h6 class="mb-0 text-sm">{{b.name}}</h6>
-                                    </div>
-                                </div>
+                            <p class="text-xs font-weight-bold mb-0 ps-4">{{b.name}}</p>
                             </td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0">{{b.phone}}</p>

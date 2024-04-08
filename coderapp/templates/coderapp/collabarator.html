@@ -1,0 +1,204 @@
+{%extends 'coderapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+
+<style>
+    /* Modal styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal content */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    /* Close button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+    }
+    
+    .card-header {
+        position: relative;
+        z-index: 1; 
+        font-family: Arial, sans-serif;
+        text-transform: capitalize;
+        
+
+    }
+    .form{
+        background-color:rgb(252, 252, 249);
+        width: 100%;
+        max-width: 450px; 
+        height: 250px; 
+        top: 50%; 
+        left: 50%;
+    
+       
+    
+    }
+    .type-box {
+    margin-top: -650px; /* Adjust as needed */
+    padding: 25%; /* Adjust padding as needed */
+    margin-left: auto; /* Move to the right side */
+    margin-right: -15%; /* Add margin from right side */
+    }
+
+   
+
+  </style>
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-7 mb-4 mt-5">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Code shared by me</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2 ">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sid</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">note</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">file</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- row started -->
+                    {%for c in collaborators%}
+                        <tr>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0">{{c.id}}</p>
+                            </td>
+                           
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{c.note}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="{{ c.file.url }}" class="text-secondary text-xs font-weight-bold" download>{{ c.file.name }}</a>
+                          </td>
+                          <td>
+                            <a href="{%url 'project-remove' c.id%}" class="buttons"><i class="fa-solid fa-trash" style="color: #e34635;"></i></a>
+                          </td>
+                            
+                        </tr>
+                    {%endfor%}
+                  <!-- row ending -->
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-7 mb-4 mt-5">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">Code shared with me</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2 ">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sid</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">note</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">file</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                   
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <!-- row started -->
+                      {%for c in collaborator%}
+                          <tr>
+                              <td>
+                                  <p class="text-xs font-weight-bold mb-0">{{c.sid}}</p>
+                              </td>
+                             
+                              <td class="align-middle text-center">
+                                  <span class="text-secondary text-xs font-weight-bold">{{c.note}}</span>
+                              </td>
+                              <td class="align-middle text-center">
+                                  <span class="text-secondary text-xs font-weight-bold">{{c.action}}</span>
+                              </td>
+                           
+                          </tr>
+                      {%endfor%}
+                    <!-- row ending -->
+  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="type-box d-flex justify-content-end  ">
+        <div class="col-5 position-relative"> <!-- Change col-7 to col-5 to accommodate the form -->
+            <div class="card">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3 text-center">Collaborate With Friends</h6>
+                   
+                </div>
+                <form method="post" enctype="multipart/form-data" class="mt-4"> <!-- Added enctype for file upload -->
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <div class="text-center"> 
+                        <button type="submit" class="btn btn-primary form-control">SAVE</button>
+                    </div>  
+                </div>          
+                </form>
+            </div>
+        </div>
+    </div>
+   
+  </div>
+  
+
+{%endblock%}
+

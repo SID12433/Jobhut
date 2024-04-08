@@ -5,7 +5,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     
-    path("home/",views.HomeView.as_view(),name="home"),
+    path("",views.HomeView.as_view(),name="coderhome"),
+    path("login/",views.SignInView.as_view(),name="codersignin"),
+    path("logout/",views.SignOutView,name="codersignout"),
+    path("register/",views.SignupView.as_view(),name="codersignup"),
+    path("index/",views.IndexView.as_view(),name="index"),
+    path("collaborator/",views.CollaboratorView.as_view(),name="collaborator"),
+    path("collaborate/<int:pk>/remove/",views.remove_project,name="project-remove"),
+    path("bids/",views.AcceptedBids.as_view(),name="bids-list")
+
 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

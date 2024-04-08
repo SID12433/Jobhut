@@ -1,0 +1,61 @@
+{%extends 'buyerapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-8 mt-5">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-1">
+              <h6 class="text-white text-capitalize ps-3">Add Work</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2">
+                <form action="" method="post">   
+                    {%csrf_token%}   
+                    <!-- <label for="title" class="ms-5">Title</label>           
+                    <input type="text" class="input" name="title" required>
+                    <label for="description" class="ms-5">description</label>
+                    <input type="text" class="input" name="description" required>
+                    <label for="skills_required" class="ms-5">skills_required</label>           
+                    <input type="text" class="input" name="skills_required" required>
+                    <label for="budget" class="ms-5">budget</label>           
+                    <input type="text" class="input" name="budget" required>
+                    <label for="category" class="ms-5">category</label>           
+                    <input type="text" class="input" name="category" required>
+                    <label for="tags" class="ms-5">tags</label>           
+                    <input type="text" class="input" name="tags" required>
+                    <label for="deadline" class="ms-5">deadline</label>           
+                    <input type="text" class="input" name="deadline" required> -->
+                    {{form.as_p}}
+                    <button class="btn btn-info mt-2 ms-5 px-5" type="submit">Add Work</button>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    .input{
+        margin-bottom: 20px;
+        border-radius: 5px;
+        font-size: medium;
+        font-weight: 3px;
+        border: 1px solid;
+        margin-left: 60px;
+        width: 80%;
+
+    }
+    form{
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    .container-fluid{
+      padding-left: 300px;
+    }
+  </style>
+
+{%endblock%}
+
