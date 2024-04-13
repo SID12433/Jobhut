@@ -1,0 +1,130 @@
+{% extends 'buyerapp/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container-fluid py-4">
+    <div class="row" style="margin-left: 90px;">
+        <div class="col-11">
+            <div class="card my-4">
+                <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-3 pb-1">
+                        <h6 class="text-white text-capitalize ps-3">Accepted Bids</h6>
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">coder</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">bid_amount</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">bid_date</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Progress</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row started -->
+                                {% for b in bids %}
+                                <tr>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0 ms-3">{{ b.coder }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0 ms-3">{{ b.project.title }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0 ms-3">{{ b.bid_amount }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0 ms-3">{{ b.bid_date }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0 ms-3">{{ b.progress }}</p>
+                                    </td>
+                                    <td>
+                                        {% if "Completed" in b.progress %}
+                                            <button class="btn btn-success ms-3 razorpay-button" data-amount="{{ b.bid_amount }}" data-coder-id="{{ b.coder.id }}" data-bid-id="{{ b.id }}">Pay</button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <!-- row ending -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    document.querySelectorAll('.razorpay-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var amount = parseInt(this.getAttribute('data-amount'));
+            var coderId = this.getAttribute('data-coder-id'); // Get coder_id directly from the button
+            var bidId = this.getAttribute('data-bid-id'); // Get bid_id directly from the button
+            var userEmail = "{{ request.user.email }}";
+            var userPhone = "{{ request.user.profile.phone }}";
+            console.log("front Coder ID:", coderId)
+            console.log("front Bid ID:", bidId)
+            console.log("front amount:", amount)
+
+            var options = {
+                key: 'rzp_test_RkFyMGIZ9LCFmH', 
+                amount: amount * 100, 
+                currency: 'INR',
+                name: 'GEEKSHUB',
+                description: 'Payment for project',
+                prefill: {
+                    name: '{{ request.user.username }}',
+                    email: userEmail,
+                    contact: userPhone
+                },
+                theme: {
+                    color: '#3399cc'
+                },
+                handler: function(response) {
+                    alert('Payment successful! Payment ID: ' + response.razorpay_payment_id);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "{% url 'create_payment' %}", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            // Handle the response from the server
+                            var responseData = JSON.parse(xhr.responseText);
+                            if (responseData.success) {
+                                alert('Payment record created successfully.');
+                            } else {
+                                alert('Failed to create payment record.');
+                            }
+                        }
+                    };
+                
+                    var data = JSON.stringify({
+                        buyer_id: "{{ request.user.id }}",
+                        coder_id: coderId,
+                        bid_id: bidId,
+                        amount: amount
+                    });
+                    console.log("Data to be sent:", data);
+                    xhr.send(data);
+                }
+            };
+
+            var razorpayInstance = new Razorpay(options);
+            razorpayInstance.open();
+        });
+    });
+</script>
+
+
+{% endblock %}

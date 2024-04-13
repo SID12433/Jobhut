@@ -1,0 +1,174 @@
+{%extends 'coderapp/base.html'%}
+{%load static%}
+
+{%block body_block%}
+
+<style>
+    /* Style for the modal */
+    #bidForm {
+        display: none; /* Hide the modal by default */
+        position: fixed; /* Fixed position */
+        z-index: 1000; /* Ensure the modal appears above other content */
+        left: 50%; /* Center horizontally */
+        top: 50%; /* Center vertically */
+        transform: translate(-50%, -50%); /* Center the modal precisely */
+        background-color: transparent;
+        margin-top: 205px;
+        margin-left: 100px; /* Transparent background */
+    }
+
+    /* Style for the modal content */
+    .modal-content {
+        width: auto;
+        padding: 20px;
+        background-color: transparent; /* Transparent background */
+        border: none;
+
+    }
+
+    /* Style for the close button */
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+    .buttons{
+        cursor: pointer;
+        margin-bottom: -4px;
+    }
+</style>
+
+
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-11 mb-4 mt-5 ms-4">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h6 class="text-white text-capitalize ps-3">Works Posted</h6>
+            </div>
+          </div>
+          <div class="card-body px-0 pb-2 ">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Title</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Description</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Skills_required</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Budget</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deadline</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                    <!-- row started -->
+                    {%for p in projects%}
+                        <tr>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0">{{p.title}}</p>
+                            </td>
+                           
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{p.description}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{p.skills_required}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{p.budget}}</span>
+                            </td>   
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{p.category}}</span>
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-bold">{{p.deadline}}</span>
+                            </td>
+                          
+                            <td>
+                                <a class="buttons btn btn-success openBidFormBtn" data-pk="{{ p.id }}">Make Bid</a>
+                            </td>
+                            
+                        </tr>
+                    {%endfor%}
+                  <!-- row ending -->
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div id="bidForm" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="col-5 position-relative mx-auto">
+                <div class="card">
+                    <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                            <h6 class="text-white text-capitalize ps-3 text-center">Place Your Bid</h6>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="bid_amount" class="form-label">Bid Amount:</label>
+                                <input type="number" class="form-control" id="bid_amount" name="bid_amount">
+                            </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Note:</label>
+                                <input type="text" class="form-control" id="note" name="note">
+                            </div>
+                            <button type="submit" href="{%url 'bid-add' 0 %}" class="btn btn-primary">Submit Bid</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+    var modal = document.getElementById("bidForm");
+
+    // Get all buttons that open the modal
+    var openBtns = document.querySelectorAll(".openBidFormBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks on a button to open the modal
+    openBtns.forEach(function(btn) {
+        btn.onclick = function() {
+            var pk = this.getAttribute("data-pk"); // Get the project's ID
+            // Set the action attribute of the form to include the project's ID
+            document.querySelector("form").action = "{% url 'bid-add' 0 %}".replace('0', pk);
+            modal.style.display = "block";
+        }
+    });
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    
+</script>
+  
+  
+
+{%endblock%}

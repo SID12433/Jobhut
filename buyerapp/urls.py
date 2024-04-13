@@ -12,9 +12,11 @@ urlpatterns = [
     path('addwork/',views.WorkView.as_view(),name="addwork"),
     path('works/',views.WorkListView.as_view(),name="listwork"),
     path('bids/',views.BidsListView.as_view(),name="bids"),
+    path('acceptedbids/',views.AcceptedBidsListView.as_view(),name="acceptedbids"),
+    path('completedworks/',views.CompWorkListView.as_view(),name="completedworks"),
     path("bids/<int:pk>/approve/",views.approve_bid,name="approve_bid"),
     path('payments/',views.PaymentsListView.as_view(),name="buyerpayments"),
-
+    path('create_payment/', views.create_payment, name='create_payment'),
 
 
     

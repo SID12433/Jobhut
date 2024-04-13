@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -98,6 +99,17 @@ class BidsListView(ListView):
         return queryset
     
 
+class AcceptedBidsListView(ListView):
+    template_name="buyerapp/acceptedbids.html"
+    model=Bid
+    context_object_name="bids" 
+    
+    def get_queryset(self):  
+        current_user = self.request.user
+        queryset = Bid.objects.filter(project__buyer=current_user,status=True)
+        return queryset
+    
+
 def approve_bid(request,*args,**kwargs):
     id=kwargs.get("pk")
     Bid.objects.filter(id=id).update(status=True)
@@ -117,20 +129,54 @@ class PaymentsListView(ListView):
         current_user = self.request.user
         queryset = Payment.objects.filter(buyer=current_user)
         return queryset
+    
+    
+class CompWorkListView(ListView):
+    template_name="buyerapp/completedwork.html"
+    model=BidDetails
+    context_object_name="projects"
+    
+    def get_queryset(self):
+        current_user = self.request.user
+        queryset = BidDetails.objects.filter(bid__project__buyer=current_user,bid__payment__isnull=False)
+        return queryset
 
 
-class PaymentView(View):
-    template_name="user/wonbids.html"
-    def get(self, request, *args, **kwargs):
-        id = self.kwargs.get("pk")
-        bid = get_object_or_404(Bid, id=id)
-        seller_instance = get_object_or_404(Buyer, pk=request.user.id)
-        payment_instance = Payment.objects.create(bid=bid, user=seller_instance, payment_mode='Online')
-        messages.success(request, "Payment successful")
-        return redirect('wonbids')
+
+import json
+def create_payment(request):
+    if request.method == 'POST':
+        # Parse the JSON data sent from the front end
+        data = json.loads(request.body)
+
+        # Extract the data fields
+        buyer_id = data.get('buyer_id')
+        coder_id = data.get('coder_id')
+        bid_id = data.get('bid_id')
+        amount = data.get('amount')
+
+        # Print or log the received data
+        print("Data received from front end:", data)
+
+        # Create the Payment object
+        try:
+            payment = Payment.objects.create(
+                buyer_id=buyer_id,
+                coder_id=coder_id,
+                bid_id=bid_id,
+                amount=amount
+            )
+            # Return success response
+            return JsonResponse({'success': True})
+        except Exception as e:
+            # Return error response
+            return JsonResponse({'error': str(e)}, status=500)
+
+    # If request method is not POST, return method not allowed error
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 
 
 def signoutview(request,*args,**kwargs):
     logout(request)
-    return redirect("home")
+    return redirect("buyersignin")

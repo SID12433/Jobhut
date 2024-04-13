@@ -4,7 +4,7 @@
 {%block body_block%}
 
 <div class="container-fluid py-4">
-    <div class="row" style="margin-left: 30px;">
+    <div class="row" style="margin-left: 20px;">
       <div class="col-12">
         <div class="card my-4">
           <div class="card-header p-0 position-relative mt-n4 mx-5 z-index-2">
@@ -18,8 +18,8 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">skills_required</th>
+                    <th rowspan="2" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Description</th>
+                    <th rowspan="2" class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">skills_required</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">budget</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">category</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">tags</th>
@@ -33,7 +33,7 @@
                     {%for p in projects%}
                         <tr>
                             <td>
-                            <p class="text-xs font-weight-bold mb-0 ms-3">{{p.title}}</p>
+                            <p class="text-xs font-weight-bold mb-0 ms-2">{{p.title}}</p>
                             </td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0 ms-3">{{p.description}}</p>

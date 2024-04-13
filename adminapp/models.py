@@ -36,6 +36,7 @@ class Coder(User):
     skills=models.CharField(max_length=100)
     proof = models.FileField(null=True, upload_to="images")
     profile = models.ImageField(upload_to="images", null=True)
+    bio=models.CharField(max_length=100,null=True)
     status= models.BooleanField(default=True)
 
     def __str__(self):
@@ -57,6 +58,7 @@ class Bid(models.Model):
     coder=models.ForeignKey(Coder,on_delete=models.CASCADE)
     project=models.ForeignKey(Project,on_delete=models.CASCADE)
     bid_amount=models.PositiveIntegerField()
+    note=models.CharField(max_length=100,null=True)
     bid_date=models.DateTimeField(auto_now_add=True)
     status=models.BooleanField(default=False)
     CHOICES = [
@@ -77,7 +79,7 @@ class BidDetails(models.Model):
 class Payment(models.Model):
     buyer=models.ForeignKey(Buyer,on_delete=models.CASCADE)
     coder=models.ForeignKey(Coder,on_delete=models.CASCADE)
-    project=models.ForeignKey(Project,on_delete=models.CASCADE)
+    bid=models.OneToOneField(Bid,on_delete=models.CASCADE)
     amount=models.PositiveIntegerField()
     payment_date=models.DateTimeField(auto_now_add=True)
     status=models.BooleanField(default=True)

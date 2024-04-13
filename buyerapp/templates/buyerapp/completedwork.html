@@ -20,6 +20,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">coder</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project title</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project doc</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,10 +31,13 @@
                             <p class="text-xs font-weight-bold mb-0 ms-3">{{p.coder.name}}</p>
                             </td>
                             <td>
-                                <p class="text-xs font-weight-bold mb-0 ms-3">{{p.project.title}}</p>
+                                <p class="text-xs font-weight-bold mb-0 ms-3">{{p.bid.project.title}}</p>
                             </td>
                             <td>
                                 <p class="text-xs font-weight-bold mb-0 ms-3">{{p.doc}}</p>
+                            </td>
+                            <td>
+                              <a class="btn btn-success ms-3" href="{{ p.doc.url }}" download>Download project</a>
                             </td>
                         </tr>
                     {%endfor%}

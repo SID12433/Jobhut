@@ -146,26 +146,25 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Sid</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">note</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">file</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                    
                     </tr>
                   </thead>
                   <tbody>
                       <!-- row started -->
                       {%for c in collaborator%}
-                          <tr>
-                              <td>
-                                  <p class="text-xs font-weight-bold mb-0">{{c.sid}}</p>
-                              </td>
-                             
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold">{{c.note}}</span>
-                              </td>
-                              <td class="align-middle text-center">
-                                  <span class="text-secondary text-xs font-weight-bold">{{c.action}}</span>
-                              </td>
-                           
-                          </tr>
+                      <tr>
+                        <td>
+                            <p class="text-xs font-weight-bold mb-0">{{c.id}}</p>
+                        </td>
+                       
+                        <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold">{{c.note}}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <a href="{{ c.file.url }}" class="text-secondary text-xs font-weight-bold" download>{{ c.file.name }}</a>
+                      </td>
+                        
+                    </tr>
                       {%endfor%}
                     <!-- row ending -->
   
@@ -178,14 +177,14 @@
       </div>
 
     <div class="type-box d-flex justify-content-end  ">
-        <div class="col-5 position-relative"> <!-- Change col-7 to col-5 to accommodate the form -->
+        <div class="col-5 position-relative">
             <div class="card">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                         <h6 class="text-white text-capitalize ps-3 text-center">Collaborate With Friends</h6>
                    
                 </div>
-                <form method="post" enctype="multipart/form-data" class="mt-4"> <!-- Added enctype for file upload -->
+                <form method="post" enctype="multipart/form-data" class="mt-4">
                     {% csrf_token %}
                     {{form.as_p}}
                     <div class="text-center"> 

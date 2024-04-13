@@ -38,3 +38,15 @@ class CollaboratorForm(forms.ModelForm):
    class Meta:
       model=Collaborate
       fields=["note","file"]   
+      
+      
+class AddBidForm(forms.ModelForm):
+   class Meta:
+      model=Bid
+      fields=["bid_amount","note"]  
+
+
+class AddWorkForm(forms.ModelForm):
+   class Meta:
+      model=BidDetails
+      fields=["doc"]  

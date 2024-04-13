@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.views.generic import CreateView,TemplateView,FormView,ListView
 from django.views import View
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.views.generic.edit import FormView
 
 
 
@@ -71,7 +74,7 @@ class CollaboratorView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["collaborators"] = Collaborate.objects.all()
+        context["collaborators"] = Collaborate.objects.filter(coder=self.request.user.id)
         context["collaborator"] = Collaborate.objects.exclude(coder=self.request.user.id)
 
         return context
@@ -83,6 +86,37 @@ def remove_project(request,*args,**kwargs):
 
 
 
+class ProjectsListView(ListView):
+    template_name="coderapp/recentworks.html"
+    model=Project
+    context_object_name="projects"
+    
+    
+from django.shortcuts import get_object_or_404
+
+class AddBidFormView(FormView):
+    form_class = AddBidForm
+    template_name = 'your_template.html' 
+
+    def form_valid(self, form):
+        bid_amount = form.cleaned_data['bid_amount']
+        note = form.cleaned_data['note']
+        coder = get_object_or_404(Coder, pk=self.request.user.id)
+        
+        bid = Bid.objects.create(
+            
+            coder=coder, 
+            project_id=self.kwargs['pk'],  
+            bid_amount=bid_amount,
+            note=note
+        )
+        
+        
+        return HttpResponseRedirect(reverse('projects-list')) 
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
 
 class AcceptedBids(ListView):
     template_name="coderapp/bids.html"
@@ -91,12 +125,32 @@ class AcceptedBids(ListView):
 
     def get_queryset(self):
         current_user=self.request.user.id
-        queryset=Bid.objects.filter(coder=current_user,status='True')
-        return super().get_queryset()
+        queryset=Bid.objects.filter(coder=current_user,status=False)
+        return queryset
 
 
 
+class AddWorkFormView(FormView):
+    form_class = AddWorkForm
+ 
+    def form_valid(self, form):
+        coder = get_object_or_404(Coder, pk=self.request.user.id)
+        bid_id = self.kwargs['pk']
+        bid_detail = Bid.objects.get(id=bid_id)
+        
+        work = BidDetails.objects.create(
+            coder=coder,
+            bid=bid_detail,
+            doc=form.cleaned_data['doc']
+        )
 
+        bid_detail.progress = "Completed"
+        bid_detail.save()
+
+        return HttpResponseRedirect(reverse('bids-list'))
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 
