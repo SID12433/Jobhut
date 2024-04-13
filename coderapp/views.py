@@ -125,7 +125,7 @@ class AcceptedBids(ListView):
 
     def get_queryset(self):
         current_user=self.request.user.id
-        queryset=Bid.objects.filter(coder=current_user,status=False)
+        queryset=Bid.objects.filter(coder=current_user,status=True)
         return queryset
 
 
