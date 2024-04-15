@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
-from django.views.generic import CreateView,TemplateView,FormView,ListView
+from django.views.generic import CreateView,TemplateView,FormView,ListView,DetailView,UpdateView
 from django.views import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -153,6 +153,20 @@ class AddWorkFormView(FormView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
+
+from django.shortcuts import get_object_or_404
+
+class ProfileView(DetailView,UpdateView):
+    template_name="coderapp/profile.html"
+    model=Coder
+    form_class=ProfileUpdateForm
+    context_object_name="p"
+    success_url=reverse_lazy("profiles")
+
+    def get_object(self, queryset=None):
+        current_user_id = self.request.user.id
+        coder_instance = get_object_or_404(Coder, id=current_user_id)
+        return coder_instance
 
 
 

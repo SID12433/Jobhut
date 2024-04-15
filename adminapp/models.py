@@ -37,6 +37,7 @@ class Coder(User):
     proof = models.FileField(null=True, upload_to="images")
     profile = models.ImageField(upload_to="images", null=True)
     bio=models.CharField(max_length=100,null=True)
+    rating=models.CharField(max_length=50,null=True)
     status= models.BooleanField(default=True)
 
     def __str__(self):

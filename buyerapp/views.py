@@ -146,19 +146,15 @@ class CompWorkListView(ListView):
 import json
 def create_payment(request):
     if request.method == 'POST':
-        # Parse the JSON data sent from the front end
         data = json.loads(request.body)
 
-        # Extract the data fields
         buyer_id = data.get('buyer_id')
         coder_id = data.get('coder_id')
         bid_id = data.get('bid_id')
         amount = data.get('amount')
 
-        # Print or log the received data
         print("Data received from front end:", data)
 
-        # Create the Payment object
         try:
             payment = Payment.objects.create(
                 buyer_id=buyer_id,
@@ -166,13 +162,10 @@ def create_payment(request):
                 bid_id=bid_id,
                 amount=amount
             )
-            # Return success response
             return JsonResponse({'success': True})
         except Exception as e:
-            # Return error response
             return JsonResponse({'error': str(e)}, status=500)
 
-    # If request method is not POST, return method not allowed error
     return JsonResponse({'error': 'Method not allowed'}, status=405)
 
 

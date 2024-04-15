@@ -50,3 +50,9 @@ class AddWorkForm(forms.ModelForm):
    class Meta:
       model=BidDetails
       fields=["doc"]  
+      
+      
+class ProfileUpdateForm(forms.ModelForm):
+   class Meta:
+      model=Coder
+      fields=["phone","address","bio","profile","skills"]

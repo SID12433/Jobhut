@@ -16,6 +16,6 @@ urlpatterns = [
     path("projects/",views.ProjectsListView.as_view(),name="projects-list"),
     path('projects/<int:pk>/make_bid/', views.AddBidFormView.as_view(), name='bid-add'),
     path('bids/<int:pk>/add_work/', views.AddWorkFormView.as_view(), name='biddetail-add'),
-
+    path("profile/",views.ProfileView.as_view(),name="profiles"),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
