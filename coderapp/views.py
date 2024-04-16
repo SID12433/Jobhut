@@ -49,9 +49,25 @@ class SignInView(FormView):
                 return render(request,self.template_name,{"form":form}) 
 
 
-
+from django.db.models import Sum
 class IndexView(TemplateView):
     template_name = "coderapp/index.html"
+    
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(**kwargs)
+        coder_id = self.request.user.id
+        context["works"] = Bid.objects.filter(coder=coder_id, status=True).count()
+        context["collaborator"] = Collaborate.objects.exclude(coder=coder_id)
+        context["completed_works"] = Coder.objects.filter(id=coder_id, status=True).count()
+        context["payment"] = Payment.objects.filter(coder=self.request.user).count()
+        total_amount = Payment.objects.filter(coder=self.request.user).aggregate(Sum('amount'))['amount__sum']
+        context["Total_Amount"] = total_amount if total_amount else 0
+    
+        return context        
+    
+
+        
 
 
 
