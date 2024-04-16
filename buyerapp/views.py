@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -56,7 +57,18 @@ class SignInView(FormView):
 
 
 class HomeView(TemplateView):
+
     template_name = "buyerapp/home.html"
+    def get_context_data(self, **kwargs):   
+        context = super().get_context_data(**kwargs)
+        buyer_id = self.request.user.id
+        context["works"] = Project.objects.filter(buyer=buyer_id).count()
+        context["completed_works"] = Payment.objects.filter(buyer=self.request.user).count()
+        context["payment"] = Payment.objects.filter(buyer=self.request.user).count()
+        total_amount = Payment.objects.filter(buyer=self.request.user).aggregate(Sum('amount'))['amount__sum']
+        context["Total_Amount"] = total_amount if total_amount else 0
+    
+        return context
     
 
 class WorkView(CreateView):
