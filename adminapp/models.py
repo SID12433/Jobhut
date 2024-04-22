@@ -18,7 +18,11 @@ class Buyer(User):
     address = models.CharField(max_length=100)
     companyname=models.CharField(max_length=100)
     country=models.CharField(max_length=100)
-    
+    aadhar_image=models.ImageField(upload_to="images", null=True)
+    aadhar_no=models.CharField(max_length=100,null=True)
+    pan_image=models.ImageField(upload_to="images", null=True)
+    pan_no=models.CharField(max_length=100,null=True)
+
     
 class Skills(models.Model):
     no=models.PositiveIntegerField()
@@ -34,11 +38,14 @@ class Coder(User):
     designation=models.CharField(max_length=100)
     gender=models.CharField(max_length=100)
     skills=models.CharField(max_length=100)
-    proof = models.FileField(null=True, upload_to="images")
     profile = models.ImageField(upload_to="images", null=True)
     bio=models.CharField(max_length=100,null=True)
     rating=models.CharField(max_length=50,null=True)
     status= models.BooleanField(default=True)
+    aadhar_image=models.ImageField(upload_to="images", null=True)
+    aadhar_no=models.CharField(max_length=100,null=True)
+    pan_image=models.ImageField(upload_to="images", null=True)
+    pan_no=models.CharField(max_length=100,null=True)
 
     def __str__(self):
         return self.name
@@ -83,7 +90,10 @@ class Payment(models.Model):
     bid=models.OneToOneField(Bid,on_delete=models.CASCADE)
     amount=models.PositiveIntegerField()
     payment_date=models.DateTimeField(auto_now_add=True)
+    is_released=models.BooleanField(default=False)
     status=models.BooleanField(default=True)
+    refund=models.BooleanField(default=False)
+    refund_released=models.BooleanField(default=False)
 
     
 class Collaborate(models.Model):

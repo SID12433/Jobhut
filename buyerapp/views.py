@@ -143,6 +143,13 @@ class PaymentsListView(ListView):
         return queryset
     
     
+def refund_request(request,*args,**kwargs):
+    id=kwargs.get("pk")
+    Payment.objects.filter(id=id).update(refund=True)
+    messages.success(request,"refund requested")
+    return redirect("buyerpayments")
+    
+    
 class CompWorkListView(ListView):
     template_name="buyerapp/completedwork.html"
     model=BidDetails

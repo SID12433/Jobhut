@@ -129,6 +129,31 @@ class PaymentsView(ListView):
     model=Payment
     context_object_name="payments"
     
+
+@method_decorator(decs,name="dispatch") 
+class RefundView(ListView):
+    template_name="adminapp/refund.html"
+    model=Payment
+    context_object_name="payments"
+    
+    def get_queryset(self):
+        queryset = Payment.objects.filter(refund=True)
+        return queryset
+    
+    
+def release_fund(request,*args,**kwargs):
+    id=kwargs.get("pk")
+    Payment.objects.filter(id=id).update(is_released=True)
+    messages.success(request,"fund is released")
+    return redirect("payments")
+
+
+def release_refund(request,*args,**kwargs):
+    id=kwargs.get("pk")
+    Payment.objects.filter(id=id).update(refund_released=True)
+    messages.success(request,"Refund is released")
+    return redirect("payments")
+    
     
 def signoutview(request,*args,**kwargs):
     logout(request)

@@ -17,5 +17,9 @@ urlpatterns = [
     path('projects/<int:pk>/make_bid/', views.AddBidFormView.as_view(), name='bid-add'),
     path('bids/<int:pk>/add_work/', views.AddWorkFormView.as_view(), name='biddetail-add'),
     path("profile/",views.ProfileView.as_view(),name="profiles"),
+    path("payments/",views.PaymentsView.as_view(),name="coderpayments"),  
+    path('forgot_password/', views.forgot_password, name='forgot_password'),
+    path('reset_password/<str:token>/', views.reset_password, name='reset_password'),
+
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

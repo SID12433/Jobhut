@@ -66,14 +66,14 @@
             <span class="nav-link-text ms-1">Matching Works</span>
           </a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link text-white " href="">
+        <li class="nav-item">
+            <a class="nav-link text-white " href="{%url 'coderpayments'%}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">table_view</i>
+                <i class="material-icons opacity-10">receipt_long</i>
               </div>
-              <span class="nav-link-text ms-1">Skills</span>
+              <span class="nav-link-text ms-1">Payments</span>
             </a>
-          </li> -->
+          </li>
           <li class="nav-item">
             <a class="nav-link text-white " href="{%url 'profiles'%}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -90,7 +90,7 @@
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
-          <h6 class="font-weight-bolder mb-0">Geekshub</h6>
+          <h6 class="font-weight-bolder mb-0">Geekshub ++</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -113,6 +113,22 @@
     {%block body_block%}
                               
     {%endblock%}
+    <div class="fixed-plugin">
+      <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="material-icons py-2"><i class="fa-brands fa-rocketchat"></i></i>
+      </a>
+      <div class="card shadow-lg">
+        <div class="card-header pb-0 pt-3">
+
+          <div class="float-end mt-4">
+            <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+              <i class="material-icons">clear</i>
+            </button>
+          </div>
+          <!-- End Toggle Button -->
+        </div>
+      </div>
+    </div>
   <!--   Core JS Files   -->
   <script src="../../static/js/core/popper.min.js"></script>
   <script src="../../static/js/core/bootstrap.min.js"></script>

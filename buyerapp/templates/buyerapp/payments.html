@@ -44,6 +44,11 @@
                             <td>
                                 <p class="text-xs font-weight-bold mb-0 ms-3">{{p.status}}</p>
                             </td>
+                            {%if p.refund is False%}
+                            <td>
+                              <a href="{%url 'refundrequest' p.id%}" class="btn btn-success">Request refund</a>
+                            </td>
+                          {%endif%}
                         </tr>
                     {%endfor%}
                   <!-- row ending -->

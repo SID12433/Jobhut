@@ -11,6 +11,7 @@ from django.views import View
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.edit import FormView
+from django.http import JsonResponse
 
 
 
@@ -183,6 +184,20 @@ class ProfileView(DetailView,UpdateView):
         current_user_id = self.request.user.id
         coder_instance = get_object_or_404(Coder, id=current_user_id)
         return coder_instance
+    
+    
+class PaymentsView(ListView):
+    template_name="coderapp/payments.html"
+    model=Payment
+    context_object_name="payments"
+    
+    def get_queryset(self):
+        current_user_id=self.request.user.id
+        current_user=Coder.objects.get(id=current_user_id)
+        queryset=Payment.objects.filter(coder=current_user,is_released=True)
+        return queryset
+
+
 
 
 
@@ -190,3 +205,43 @@ def SignOutView(request,*args,**kwargs):
     logout(request)
     return redirect('codersignin')
 
+
+
+from adminapp.models import User
+import random
+import string
+
+reset_tokens = {}
+
+def generate_token():
+    token = ''.join(random.choices(string.ascii_letters + string.digits, k=30))
+    return token
+
+def forgot_password(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        try:
+            user = User.objects.get(username=username)
+            token = generate_token()
+            reset_tokens[token] = user
+            return JsonResponse({'token': token})  # Return token as JSON response
+        except User.DoesNotExist:
+            messages.error(request, "Username does not exist")
+            return redirect('forgot_password')  # Redirect back to the forgot password form
+    return render(request, 'coderapp/forgot_password.html')
+
+def reset_password(request, token):
+    if request.method == 'POST':
+        if token in reset_tokens:
+            print(token)
+            user = reset_tokens[token]
+            if request.method == 'POST':
+                password = request.POST.get('password')
+                user.set_password(password)
+                user.save()
+                del reset_tokens[token]
+                return redirect('coderhome')
+            return redirect('coderhome')
+        else:
+            messages.error(request, "Invalid or expired token")
+            return redirect('forgot_password')

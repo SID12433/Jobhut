@@ -9,7 +9,7 @@
         <div class="card my-4">
           <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-              <h6 class="text-white text-capitalize ps-3">Payments</h6>
+              <h6 class="text-white text-capitalize ps-3">Refunds</h6>
             </div>
           </div>
           <div class="card-body px-0 pb-2">
@@ -21,8 +21,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Coder</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment date</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Released status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Refund status</th>
                     <th class="text-secondary opacity-7"></th>
                   </tr>
                 </thead>
@@ -43,14 +42,11 @@
                             <span class="text-secondary text-xs font-weight-bold">{{p.amount}}</span>
                             </td>
                             <td class="align-middle text-center">
-                            <span class="text-secondary text-xs font-weight-bold">{{p.payment_date}}</span>
+                              <span class="text-secondary text-xs font-weight-bold">{{p.refund_released}}</span>
                             </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">{{p.is_released}}</span>
-                            </td>
-                            {%if p.is_released is False%}
+                            {%if p.refund is False%}
                               <td>
-                                <a href="{%url 'release_fund' p.id%}" class="btn btn-success">release fund</a>
+                                <a href="{%url 'release_refund' p.id%}" class="btn btn-success">initiate refund</a>
                               </td>
                             {%endif%}
                         </tr>

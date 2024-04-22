@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 class RegForm(UserCreationForm):
     class Meta:
         model=Buyer
-        fields=["name","address","companyname","country","phone","email_address","username","password1","password2"]
+        fields=["name","address","companyname","country","phone","email_address","aadhar_image","aadhar_no","pan_image","pan_no","username","password1","password2"]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Name'}),
             'address': forms.Textarea(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Address', 'rows': 3}),
@@ -14,6 +14,8 @@ class RegForm(UserCreationForm):
             'country': forms.TextInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'country'}),
             'phone': forms.NumberInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Phone'}),
             'email_address': forms.EmailInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Email Address'}),
+            'aadhar_no': forms.NumberInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Aadhar no'}),
+            'pan_no': forms.NumberInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'pan no'}),
             'username': forms.TextInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Username'}),
             'password1': forms.PasswordInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Password'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control', 'style': 'margin-bottom: 5px;', 'placeholder': 'Reenter password'}),

@@ -53,13 +53,6 @@
                      {{form.as_p}}
                      <input type="submit" value="Register" class="form-control btn btn-outline-dark mb-2">
                      <a href="{%url 'codersignin'%}"><p>Already have an account? login now</p></a>
-                     {%if messages%}
-                         {%for m in messages%}
-                             <div>
-                                 {{m}}
-                             </div>
-                         {%endfor%}
-                     {%endif%}
                  </form>
             </div>
          </div>

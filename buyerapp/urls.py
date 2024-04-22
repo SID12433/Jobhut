@@ -16,6 +16,7 @@ urlpatterns = [
     path('completedworks/',views.CompWorkListView.as_view(),name="completedworks"),
     path("bids/<int:pk>/approve/",views.approve_bid,name="approve_bid"),
     path('payments/',views.PaymentsListView.as_view(),name="buyerpayments"),
+    path('payments/<int:pk>/refundrequest/',views.refund_request,name="refundrequest"),
     path('create_payment/', views.create_payment, name='create_payment'),
 
 

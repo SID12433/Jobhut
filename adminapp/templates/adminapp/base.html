@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../static/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../static/img/favicon.png">
   <title>
-    Spice Auction
+    JobHub
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -67,6 +67,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link text-white " href="{%url 'refunds'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="nav-link-text ms-1">Refund list</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white " href="{%url 'coders'%}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">person</i>
@@ -98,7 +106,7 @@
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
-          <h6 class="font-weight-bolder mb-0">Geekshub</h6>
+          <h6 class="font-weight-bolder mb-0">Geekshub ++</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -121,6 +129,9 @@
     {%block body_block%}
                               
     {%endblock%}
+
+
+
   <!--   Core JS Files   -->
   <script src="../../static/js/core/popper.min.js"></script>
   <script src="../../static/js/core/bootstrap.min.js"></script>

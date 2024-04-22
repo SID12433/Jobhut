@@ -1,4 +1,4 @@
-{%extends 'adminapp/base.html'%}
+{%extends 'coderapp/base.html'%}
 {%load static%}
 
 {%block body_block%}
@@ -22,7 +22,7 @@
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment date</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Released status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                     <th class="text-secondary opacity-7"></th>
                   </tr>
                 </thead>
@@ -46,13 +46,8 @@
                             <span class="text-secondary text-xs font-weight-bold">{{p.payment_date}}</span>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">{{p.is_released}}</span>
-                            </td>
-                            {%if p.is_released is False%}
-                              <td>
-                                <a href="{%url 'release_fund' p.id%}" class="btn btn-success">release fund</a>
+                              <span class="text-secondary text-xs font-weight-bold">{{p.status}}</span>
                               </td>
-                            {%endif%}
                         </tr>
                     {%endfor%}
                   <!-- row ending -->
