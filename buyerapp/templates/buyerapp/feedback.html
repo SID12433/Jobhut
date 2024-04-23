@@ -1,0 +1,67 @@
+{% extends 'buyerapp/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<style>
+  /* Style for the modal */
+  #bidForm {
+    display: block; /* Hide the modal by default */
+    position: fixed; /* Fixed position */
+    z-index: 1000; /* Ensure the modal appears above other content */
+    left: 60%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    transform: translate(-50%, -50%); /* Center the modal precisely */
+    background:transparent;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 200px;
+  }
+
+  /* Style for the close button */
+
+  .modal-content{
+    background: none;
+    border: none;
+  }
+
+  /* Style for the Add Feedback button */
+  .openBidFormBtn {
+    cursor: pointer;
+    margin-bottom: -4px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .openBidFormBtn:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+
+<div id="bidForm" class="modal">
+  <div class="modal-content">
+    <div class="col-5 position-relative mx-auto">
+      <div class="card">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+            <h6 class="text-white text-capitalize ps-3 text-center">For better experience...give your feedback</h6>
+          </div>
+        </div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" action="{%url 'rating' %}">
+            {% csrf_token %}
+            <textarea name="rating" id="rating" class="form-control border" rows="3" required></textarea>
+            <button type="submit"  class="btn btn-primary mt-3">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

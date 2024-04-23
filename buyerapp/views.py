@@ -9,6 +9,22 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from django.db.models import Sum
+from django.http import request
+
+
+
+
+#ml part
+import pickle
+import string
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from wordcloud import WordCloud, STOPWORDS
+from sklearn.feature_extraction.text import CountVectorizer
+
+
 
 # Create your views here.
 
@@ -192,3 +208,99 @@ def create_payment(request):
 def signoutview(request,*args,**kwargs):
     logout(request)
     return redirect("buyersignin")
+
+
+
+# ML part
+
+def preprocessor(reviews):
+    # Define HTMLTAGS for removing HTML tags
+    HTMLTAGS = re.compile('<.*?>')
+    
+    # Define table for removing punctuation
+    table = str.maketrans(dict.fromkeys(string.punctuation))
+    
+    # Define remove_digits for removing digits
+    remove_digits = str.maketrans('', '', string.digits)
+    
+    # Define MULTIPLE_WHITESPACE for replacing multiple whitespaces with single space
+    MULTIPLE_WHITESPACE = re.compile(r"\s+")
+    
+    # Define stopwords
+    total_stopwords = set(stopwords.words('english'))
+    negative_stop_words = set(word for word in total_stopwords if "n't" in word or 'no' in word)
+    final_stopwords = total_stopwords - negative_stop_words
+    final_stopwords.add("one")
+    
+    # Create stemming object
+    stemmer = PorterStemmer()
+
+    # Remove HTML tags
+    reviews = HTMLTAGS.sub(r'', reviews)
+
+    # Remove punctuation
+    reviews = reviews.translate(table)
+    
+    # Remove digits
+    reviews = reviews.translate(remove_digits)
+    
+    # Lowercase all letters
+    reviews = reviews.lower()
+    
+    # Replace multiple white spaces with single space
+    reviews = MULTIPLE_WHITESPACE.sub(" ", reviews).strip()
+    
+    # Remove stop words
+    reviews = [word for word in reviews.split() if word not in final_stopwords]
+    
+    # Stemming
+    reviews = ' '.join([stemmer.stem(word) for word in reviews])
+    
+    return reviews
+
+# Load the saved model and vectorizer
+with open("transformer1.pkl", "rb") as f:
+    loaded_vectorizer = pickle.load(f)
+
+with open("model1.pkl", "rb") as f:
+    loaded_model = pickle.load(f)
+
+def predict_sentiment(review):
+    # Preprocess the review
+    preprocessed_review = preprocessor(review)
+    # Vectorize the preprocessed review
+    vectorized_review = loaded_vectorizer.transform([preprocessed_review])
+    # Predict sentiment
+    sentiment_label = loaded_model.predict(vectorized_review)[0]
+    
+    # Map numerical label to text label
+    if sentiment_label == 1:
+        return "1"
+    elif sentiment_label == 2:
+        return "2"
+    elif sentiment_label == 3:
+        return "3"
+    elif sentiment_label == 4:
+        return "4"
+    elif sentiment_label == 5:
+        return "5"
+    else:
+        return "enter valid string"
+
+def predict_sentiment_view(request):
+    buyer_id=request.user.id
+    buyer_obj=Buyer.objects.get(id=buyer_id)
+    if request.method == 'POST':
+        review_text = request.POST.get('rating')
+        predicted_sentiment = predict_sentiment(review_text)
+
+        if request.user.is_authenticated:
+            feedback = Feedback.objects.create(buyer=buyer_obj,rating=predicted_sentiment)
+            feedback.save()
+
+        return redirect('buyerhome')
+    else:
+        return render(request, 'feedback.html')
+    
+class FeedbackView(TemplateView):
+    template_name = "buyerapp/feedback.html"

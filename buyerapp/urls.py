@@ -18,6 +18,9 @@ urlpatterns = [
     path('payments/',views.PaymentsListView.as_view(),name="buyerpayments"),
     path('payments/<int:pk>/refundrequest/',views.refund_request,name="refundrequest"),
     path('create_payment/', views.create_payment, name='create_payment'),
+    path('feedback/',views.FeedbackView.as_view(),name="feedback"),
+    path('rating/',views.predict_sentiment_view,name="rating"),
+
 
 
     

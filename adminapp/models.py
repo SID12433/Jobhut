@@ -100,3 +100,9 @@ class Collaborate(models.Model):
     note = models.CharField(max_length=100,)
     file= models.FileField(upload_to="files",null=True)
     coder = models.ForeignKey(Coder, on_delete=models.CASCADE)
+    
+
+class Feedback(models.Model):
+    buyer=models.ForeignKey(Buyer,on_delete=models.CASCADE)
+    rating=models.CharField(max_length=100)
+    posted_time=models.DateTimeField(auto_now_add=True)
