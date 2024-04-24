@@ -290,12 +290,13 @@ def predict_sentiment(review):
 def predict_sentiment_view(request):
     buyer_id=request.user.id
     buyer_obj=Buyer.objects.get(id=buyer_id)
+    print(buyer_obj)
     if request.method == 'POST':
         review_text = request.POST.get('rating')
         predicted_sentiment = predict_sentiment(review_text)
 
         if request.user.is_authenticated:
-            feedback = Feedback.objects.create(buyer=buyer_obj,rating=predicted_sentiment)
+            feedback = Feedback.objects.create(buyer=buyer_obj,note=review_text,rating=predicted_sentiment)
             feedback.save()
 
         return redirect('buyerhome')

@@ -105,4 +105,5 @@ class Collaborate(models.Model):
 class Feedback(models.Model):
     buyer=models.ForeignKey(Buyer,on_delete=models.CASCADE)
     rating=models.CharField(max_length=100)
+    note=models.CharField(max_length=100,null=True)
     posted_time=models.DateTimeField(auto_now_add=True)

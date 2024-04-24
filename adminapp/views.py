@@ -85,6 +85,13 @@ class BuyerView(ListView):
     
     
 @method_decorator(decs,name="dispatch") 
+class FeedbacksView(ListView):
+    template_name="adminapp/feedbacks.html"
+    model=Feedback
+    context_object_name="feedbacks"
+    
+    
+@method_decorator(decs,name="dispatch") 
 class SkillsView(CreateView,ListView):
     template_name="adminapp/skills.html"
     model=Skills
