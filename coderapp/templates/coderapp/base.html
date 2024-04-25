@@ -113,22 +113,251 @@
     {%block body_block%}
                               
     {%endblock%}
+
+
     <div class="fixed-plugin">
-      <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <a class="fixed-plugin-button text-dark position-fixed px-3 py-2"  id="chat-toggle">
         <i class="material-icons py-2"><i class="fa-brands fa-rocketchat"></i></i>
       </a>
-      <div class="card shadow-lg">
-        <div class="card-header pb-0 pt-3">
-
-          <div class="float-end mt-4">
-            <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-              <i class="material-icons">clear</i>
-            </button>
+      <div>
+        <div class="chatbox position-fixed">
+          <div class="chatbox__support">
+              <div class="chatbox__header">
+                  <div class="chatbox__image--header">
+                      <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                  </div>
+                  <div class="chatbox__content--header">
+                      <h4 class="chatbox__heading--header">Geek support</h4>
+                      <p class="chatbox__description--header">Hi. My name is Sid. How can I help you?</p>
+                  </div>
+              </div>
+              <div class="chatbox__messages">
+                  <div></div>
+              </div>
+              <div class="chatbox__footer">
+                  <input type="text" placeholder="Write a message...">
+                  <button class="chatbox_send--footer send_button btn btn-white click-button">Send</button>
+              </div>
           </div>
-          <!-- End Toggle Button -->
-        </div>
+          <div class="chatbox__button">
+          </div>
+      </div>
       </div>
     </div>
+
+
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 400;
+        font-size: 100%;
+        background: #F1F1F1;
+    }
+    
+    *, html {
+        --primaryGradient: linear-gradient(93.12deg, #252424 0.52%, #5e6263 100%);
+        --secondaryGradient: linear-gradient(268.91deg, #252424 0.52%, #5e6263 100%);
+        --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
+        --primary: #581B98;
+    }
+    
+    /* CHATBOX
+    =============== */
+    .chatbox {
+        position: fixed;
+        bottom: 90px;
+        right: 30px;
+        z-index: 999; 
+    }
+
+    .chatbox.show .chatbox__support {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* CONTENT IS CLOSE */
+    .chatbox__support {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        width: 300px;
+        height: 350px;
+        opacity: 0;
+        transition: all .5s ease-in-out;
+        z-index: 12345;
+        
+    }
+    .click-button{
+      margin-left: 10px;
+      margin-bottom: -0.5px;
+    }
+    
+
+    
+    /* BUTTON */
+    .chatbox__button {
+        text-align: right;
+        
+    }
+    
+    .send__button {
+        padding: 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    
+    /* HEADER */
+    .chatbox__header {
+        position: sticky;
+        top: 0;
+        background: orange;
+    }
+    
+    /* MESSAGES */
+    .chatbox__messages {
+        margin-top: auto;
+        display: flex;
+        overflow-y: scroll;
+        flex-direction: column-reverse;
+    }
+    
+    .messages__item {
+        background: orange;
+        max-width: 60.6%;
+        width: fit-content;
+    }
+    
+    .messages__item--operator {
+        margin-left: auto;
+    }
+    
+    .messages__item--visitor {
+        margin-right: auto;
+    }
+    
+    /* FOOTER */
+    .chatbox__footer {
+        position: sticky;
+        bottom: 0;
+    }
+    
+    .chatbox__support {
+        background: #e7e7e7;
+        height: 450px;
+        width: 350px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    
+    /* HEADER */
+    .chatbox__header {
+        background: var(--primaryGradient);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        box-shadow: var(--primaryBoxShadow);
+    }
+    
+    .chatbox__image--header {
+        margin-right: 10px;
+    }
+    
+    .chatbox__heading--header {
+        font-size: 1.2rem;
+        color: white;
+    }
+    
+    .chatbox__description--header {
+        font-size: .9rem;
+        color: white;
+    }
+    
+    /* Messages */
+    .chatbox__messages {
+        padding: 0 20px;
+    }
+    
+    .messages__item {
+        margin-top: 10px;
+        background: #E0E0E0;
+        padding: 8px 12px;
+        max-width: 70%;
+    }
+    
+    .messages__item--visitor,
+    .messages__item--typing {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    
+    .messages__item--operator {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background: var(--primary);
+        color: white;
+    }
+    
+    /* FOOTER */
+    .chatbox__footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px;
+        background: var(--secondaryGradient);
+        box-shadow: var(--secondaryBoxShadow);
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        margin-top: 20px;
+    }
+    
+    .chatbox__footer input {
+        width: 80%;
+        border: none;
+        padding: 10px 10px;
+        border-radius: 30px;
+        text-align: left;
+    }
+    
+    .chatbox__send--footer {
+        color: white;
+    }
+    
+    .chatbox__button button,
+    .chatbox__button button:focus,
+    .chatbox__button button:visited {
+        padding: 10px;
+        background: white;
+        border: none;
+        outline: none;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+    </style>
+
+
+
   <!--   Core JS Files   -->
   <script src="../../static/js/core/popper.min.js"></script>
   <script src="../../static/js/core/bootstrap.min.js"></script>
@@ -395,6 +624,29 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../static/js/material-dashboard.min.js?v=3.0.0"></script>
+
+
+  
+
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const chatToggleButton = document.getElementById("chat-toggle");
+      const chatbox = document.querySelector(".chatbox");
+  
+      // Add event listener to toggle button
+      chatToggleButton.addEventListener("click", function() {
+        // Toggle visibility of the chatbox
+        chatbox.classList.toggle("show");
+      });
+    });
+  </script>
+
+
+
+
+
 </body>
 
 </html>
